@@ -39,11 +39,11 @@ class HomeControllerProvider implements ControllerProviderInterface {
         $app['session']->set('game_begin', true);
         $this->initGame($app);
 
-        // Récupère le TOP 5 des scores
-        $top_five  = $app['db']->fetchAll('SELECT username, score FROM scores ORDER BY score DESC LIMIT 5');
+        // Récupère le TOP X des scores
+        $top_five  = $app['db']->fetchAll('SELECT username, score FROM scores ORDER BY score DESC LIMIT 20');
 
         return $app['twig']->render('HomeController/index.twig', [
-            'top_five' => $top_five,
+            'top' => $top,
         ]);
     }
 
@@ -113,7 +113,9 @@ class HomeControllerProvider implements ControllerProviderInterface {
         }
 
         // Sauvegarde du score actuel avant de réinitialiser les données
-        $app['session']->set('current_score', $app['session']->get('score'));
+        if ('POST' !== $request->getMethod()) {
+            $app['session']->set('current_score', $app['session']->get('score'));
+        }
 
         $this->initGame($app);
 
