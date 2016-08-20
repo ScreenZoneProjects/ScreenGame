@@ -18,8 +18,24 @@ $(function () {
             }, 10);
         };
 
-        /*countdown(function () {
+        countdown(function () {
             $("[data-form]").submit();
-        });*/
+        });
+    }
+
+    var $answers = $("[data-answer]");
+
+    if (0 < $answers.length) {
+        $answers.SpatialNavigation()
+            .focus(function() {
+                $(this).addClass("hover");
+            })
+            .blur(function() {
+                $(this).removeClass("hover");
+            });
+
+        $answers.on("mouseover", function () {
+            $answers.removeClass("hover");
+        });
     }
 });

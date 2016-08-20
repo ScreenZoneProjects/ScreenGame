@@ -57,7 +57,7 @@
                         <ul>
                         {% for game in answers %}
                             <li class="answer">
-                                <button type="submit" name="answer" value="{{ game.id }}">{{ game.name }}</button>
+                                <button type="submit" name="answer" value="{{ game.id }}" data-answer>{{ game.name }}</button>
                                 <br><br>
                             </li>
                         {% endfor %}
@@ -69,4 +69,10 @@
     </form>
 </div>
 <!-- FIN : QUIZZ -->
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+
+    <script src="{{ asset('assets/js/spatial_navigation.js') }}"></script>
 {% endblock %}
