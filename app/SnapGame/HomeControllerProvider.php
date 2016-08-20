@@ -54,7 +54,7 @@ class HomeControllerProvider implements ControllerProviderInterface {
 
         if ('POST' === $request->getMethod()) {
             $user_answer    = (int) $request->request->get('answer');
-            $time_end       = time();
+            $answer_time    = max(0, (time() - $app['session']->get('time_begin')));
             $previous_score = $app['session']->get('score');
 
             // Si mauvaise réponse, on perd une vie
@@ -70,7 +70,7 @@ class HomeControllerProvider implements ControllerProviderInterface {
                 $app['session']->set('score',
                     $app['session']->get('score') +
                     100 * $app['session']->get('nb_choices') +
-                    10 * ($app['config']['snapgame']['answer_timeout'] - ($time_end - $app['session']->get('time_begin')))
+                    10 * ($app['config']['snapgame']['answer_timeout'] - $answer_time)
                 );
 
                 // Si on atteind le palier de score on ajoute une réponse possible
@@ -113,7 +113,7 @@ class HomeControllerProvider implements ControllerProviderInterface {
         }
 
         // Sauvegarde du score actuel avant de réinitialiser les données
-        $app['session']->getFlashBag()->add('current_score', $app['session']->get('score'));
+        $app['session']->set('current_score', $app['session']->get('score'));
 
         $this->initGame($app);
 
@@ -123,7 +123,7 @@ class HomeControllerProvider implements ControllerProviderInterface {
             ->add('username', TextType::class, [
                 'constraints' => [
                     new Assert\NotBlank(),
-                    new Assert\Length(['max' => 10]),
+                    new Assert\Regex(['pattern' => '/^[a-zA-Z0-9]{1,10}$/']),
                 ]
             ])
             ->getForm();
@@ -135,8 +135,10 @@ class HomeControllerProvider implements ControllerProviderInterface {
 
             $app['db']->executeUpdate(
                 'INSERT INTO scores (username, score, created_at) VALUES(?, ?, NOW())',
-                [$data['username'], current($app['session']->getFlashBag()->get('current_score', [0]))]
+                [$data['username'], $app['session']->get('current_score')]
             );
+
+            $app['session']->remove('current_score');
 
             return $app->redirect($app->url('home'));
         }

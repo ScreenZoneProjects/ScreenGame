@@ -60,7 +60,7 @@ $app->extend('twig', function ($twig, $app) {
         new Twig_SimpleFilter('render_score_leds', function ($input, $assets_base) {
             $return         = '';
             $input          = str_pad($input, 6, 'E', STR_PAD_LEFT);
-            $assets_base    = substr($assets_base, 0, strpos($assets_base, '?'));
+            $assets_base    = substr($assets_base, 0, strrpos($assets_base, '?'));
 
             for ($x = 0; $x < mb_strlen($input); $x++) {
                 $return .= sprintf('<img src="%s/led/led-%s.png" alt="" />', $assets_base, $input[$x]);
