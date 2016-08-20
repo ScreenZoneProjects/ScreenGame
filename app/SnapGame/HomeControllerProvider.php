@@ -41,7 +41,7 @@ class HomeControllerProvider implements ControllerProviderInterface {
         $this->initGame($app);
 
         // Récupère le TOP X des scores
-        $top = $app['db']->fetchAll('SELECT username, score FROM scores ORDER BY score DESC LIMIT 20');
+        $top = $app['db']->fetchAll('SELECT username, score FROM scores ORDER BY score DESC LIMIT 10');
 
         return $app['twig']->render('HomeController/index.twig', [
             'top' => $top,
@@ -126,7 +126,7 @@ class HomeControllerProvider implements ControllerProviderInterface {
             ->add('username', TextType::class, [
                 'constraints' => [
                     new Assert\NotBlank(),
-                    new Assert\Regex(['pattern' => '/^[a-zA-Z0-9]{1,10}$/']),
+                    new Assert\Regex(['pattern' => '/^[a-zA-Z0-9 ]{1,10}$/']),
                 ]
             ])
             ->getForm();
