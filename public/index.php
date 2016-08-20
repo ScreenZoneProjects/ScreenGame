@@ -37,7 +37,7 @@ $app->extend('twig', function ($twig, $app) {
 
 // Configuration des assets
 $app->register(new AssetServiceProvider(), [
-    'assets.version' => 'v1',
+    'assets.version' => 'v20160820',
 ]);
 
 // Configuration du fichier de config
