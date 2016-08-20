@@ -37,9 +37,7 @@ class HomeControllerProvider implements ControllerProviderInterface {
     public function index(Application $app) {
         // Initialisation du jeu
         $app['session']->set('game_begin', true);
-        $app['session']->set('score', 0);
-        $app['session']->set('life', $app['config']['snapgame']['nb_errors_allowed']);
-        $app['session']->set('nb_choices', $app['config']['snapgame']['nb_choices']);
+        $this->initGame($app);
 
         return $app['twig']->render('HomeController/index.twig');
     }
@@ -105,9 +103,14 @@ class HomeControllerProvider implements ControllerProviderInterface {
     }
 
     public function gameover(Application $app, Request $request) {
-        if (!$app['session']->has('game_begin')) {
+        if (!$app['session']->has('game_begin') && 'POST' !== $request->getMethod()) {
             return $app->redirect($app->url('home'));
         }
+
+        // Sauvegarde du score actuel avant de réinitialiser les données
+        $app['session']->getFlashBag()->add('current_score', $app['session']->get('score'));
+
+        $this->initGame($app);
 
         // Formulaire d'enregistrement du high-score
         $data   = ['username' => 'Anonymous'];
@@ -124,15 +127,25 @@ class HomeControllerProvider implements ControllerProviderInterface {
 
         if ($form->isValid()) {
             $data = $form->getData();
-dump($data);
-            // do something with the data
 
-            // redirect somewhere
-            //return $app->redirect('...');
+            $app['db']->executeUpdate(
+                'INSERT INTO scores (username, score, created_at) VALUES(?, ?, NOW())',
+                [$data['username'], current($app['session']->getFlashBag()->get('current_score', [0]))]
+            );
+
+            return $app->redirect($app->url('home'));
         }
 
         return $app['twig']->render('HomeController/gameover.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    protected function initGame(Application $app)
+    {
+        // Initialisation du jeu
+        $app['session']->set('score', 0);
+        $app['session']->set('life', $app['config']['snapgame']['nb_errors_allowed']);
+        $app['session']->set('nb_choices', $app['config']['snapgame']['nb_choices']);
     }
 }
