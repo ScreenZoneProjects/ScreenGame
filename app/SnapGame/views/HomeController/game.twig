@@ -8,7 +8,7 @@
     <table width="100%">
         <tbody>
             <tr>
-                <td width="33%" class="center">
+                <td width="40%" class="center">
                     HI-SCORE<br><br>
                     <span class="score">
                     {% for digit in max_score.score|str_pad_left(6, 'E')|split('') %}
@@ -25,13 +25,13 @@
                     {% endfor %}
                     </span>
                 </td>
-                <td width="33%" class="center">
+                <td width="30%" class="center">
                     TIME REMANING<br><br>
                     <span class="timer">
                         <p id="timer" data-timer="container" data-timeout="{{ answer_timeout }}"></p>
                     </span>
                 </td>
-                <td width="33%" class="center">
+                <td width="30%" class="center">
                     SCORE<br><br><span class="score">{{ score }}</span><br>
                     {% for i in 1..life %}
                         <img src="{{ asset('assets/img/ui/heart.png') }}" alt="" />
