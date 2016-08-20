@@ -1,4 +1,5 @@
 $(function () {
+    // Jeu
     var $timerContainer = $("[data-timer=container]");
 
     if (0 < $timerContainer.length) {
@@ -37,5 +38,12 @@ $(function () {
         $answers.on("mouseover", function () {
             $answers.removeClass("hover");
         });
+    }
+
+    // Game-over
+    var $select = $("[data-select]");
+
+    if (0 < $select.length) {
+        $select.select();
     }
 });

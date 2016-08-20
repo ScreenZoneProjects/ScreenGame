@@ -4,7 +4,9 @@ namespace SnapGame;
 
 use Silex\Api\ControllerProviderInterface;
 use Silex\Application;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class HomeControllerProvider implements ControllerProviderInterface {
     public function connect(Application $app) {
@@ -26,6 +28,8 @@ class HomeControllerProvider implements ControllerProviderInterface {
             ->get('/gameover', 'SnapGame\HomeControllerProvider::gameover')
             ->bind('gameover')
         ;
+
+        $controllers->post('/gameover', 'SnapGame\HomeControllerProvider::gameover');
 
         return $controllers;
     }
@@ -82,7 +86,7 @@ class HomeControllerProvider implements ControllerProviderInterface {
             return $app->redirect($app->url('game'));
         }
 
-        // Récupération d'un jeu et de X réponses au hasard
+        // Récupération d'un jeu, de X réponses au hasard et du high-score
         $game       = $app['db']->fetchAssoc('SELECT id, name, image FROM games ORDER BY RAND() LIMIT 1');
         $answers    = $app['db']->fetchAll(sprintf('SELECT id, name FROM games ORDER BY RAND() LIMIT %u', $app['session']->get('nb_choices')));
         $max_score  = $app['db']->fetchAssoc('SELECT username, MAX(score) AS score FROM scores');
@@ -100,11 +104,35 @@ class HomeControllerProvider implements ControllerProviderInterface {
         ]);
     }
 
-    public function gameover(Application $app) {
+    public function gameover(Application $app, Request $request) {
         if (!$app['session']->has('game_begin')) {
             return $app->redirect($app->url('home'));
         }
 
-        return $app['twig']->render('HomeController/gameover.twig');
+        // Formulaire d'enregistrement du high-score
+        $data   = ['username' => 'Anonymous'];
+        $form   = $app->form($data)
+            ->add('username', TextType::class, [
+                'constraints' => [
+                    new Assert\NotBlank(),
+                    new Assert\Length(['max' => 10]),
+                ]
+            ])
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $data = $form->getData();
+dump($data);
+            // do something with the data
+
+            // redirect somewhere
+            //return $app->redirect('...');
+        }
+
+        return $app['twig']->render('HomeController/gameover.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

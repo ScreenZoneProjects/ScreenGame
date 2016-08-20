@@ -3,8 +3,12 @@
 use GeckoPackages\Silex\Services\Config\ConfigServiceProvider;
 use Silex\Provider\AssetServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
+use Silex\Provider\FormServiceProvider;
+use Silex\Provider\LocaleServiceProvider;
 use Silex\Provider\SessionServiceProvider;
+use Silex\Provider\TranslationServiceProvider;
 use Silex\Provider\TwigServiceProvider;
+use Silex\Provider\ValidatorServiceProvider;
 use SnapGame\BaseApplication;
 use SnapGame\HomeControllerProvider;
 
@@ -21,7 +25,7 @@ $app->register(new TwigServiceProvider(), [
     'twig.path' => __DIR__.'/../app/SnapGame/views',
 ]);
 
-$app->extend('twig', function($twig, $app) {
+$app->extend('twig', function ($twig, $app) {
     $twig->addFilter(
         new Twig_SimpleFilter('str_pad_left', function ($input, $pad_length, $pad_string = '') {
             return str_pad($input, $pad_length, $pad_string, STR_PAD_LEFT);
@@ -63,6 +67,15 @@ $app->register(new SessionServiceProvider(), [
         'name' => 'snap_game',
     ],
 ]);
+
+// Configuration des traductions (requis pour les formulaires)
+$app->register(new LocaleServiceProvider());
+$app->register(new TranslationServiceProvider(), ['locale_fallbacks' => ['fr']]);
+
+// Configuration des formulaires
+$app->register(new FormServiceProvider());
+$app->register(new ValidatorServiceProvider());
+$app->register(new TranslationServiceProvider(), ['translator.domains' => []]);
 
 // Routing
 $app->mount('/', new HomeControllerProvider());

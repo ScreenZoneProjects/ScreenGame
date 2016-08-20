@@ -8,4 +8,5 @@ class BaseApplication extends Application
 {
     use Application\TwigTrait;
     use Application\UrlGeneratorTrait;
+    use Application\FormTrait;
 }
