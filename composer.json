@@ -15,7 +15,9 @@
         "gecko-packages/gecko-silex-config-service": "^2.0",
         "doctrine/dbal": "~2.2",
         "symfony/form": "^3.1",
-        "symfony/validator": "^3.1"
+        "symfony/validator": "^3.1",
+        "symfony/translation": "^3.1",
+        "symfony/config": "^3.1"
     },
     "autoload": {
         "psr-4": {
