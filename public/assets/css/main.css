@@ -1,0 +1,361 @@
+/*                           DESIGN BY KAM3LEON                          */
+
+
+/**************************************************************************
+     IMPORT GOOGLE FONTS
+**************************************************************************/
+/* ROBOTO */      @import url(http://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900);
+/* FRANCOIS */    @import url(https://fonts.googleapis.com/css?family=Francois+One);
+/* CUPRUM */      @import url(https://fonts.googleapis.com/css?family=Cuprum:400,700);
+/* CUPRUM */      @import url(https://fonts.googleapis.com/css?family=Ubuntu:700,400);
+
+/**************************************************************************
+	SCROLLBAR
+**************************************************************************/
+::-webkit-scrollbar				{/* 1 */width:15px}
+::-webkit-scrollbar-button		{/* 2 */}
+::-webkit-scrollbar-track		{/* 3 */}
+::-webkit-scrollbar-track-piece	{/* 4 */background:rgba(255,255,255,0.5)}
+::-webkit-scrollbar-thumb		{/* 5 */background-color:#06f}
+::-webkit-scrollbar-corner		{/* 6 */}
+::-webkit-resizer				{/* 7 */}
+
+/**********************************************/
+/*     RESET                        */
+/**********************************************/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}
+/* HTML5 display-role reset for older browsers */
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
+body{line-height:1}
+ol,ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
+table{border-collapse:collapse;border-spacing:0;}
+table tbody tr td{border-collapse:collapse;border-spacing:0;vertical-align:top;}
+/**************************************************************************
+     BODY
+**************************************************************************/
+html{background:#333 url(../img/ui/bg/back_1.png);background-repeat:no-repeat;background-attachment:fixed;background-position:top center}
+body{font-family:"Cuprum",sans-serif;color:#fff;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;font-size:17px;font-style:normal;cursor:url("../img/curseurs/cursor.png"),pointer}
+body a{text-decoration:none;color:#fff;cursor:url("../img/curseurs/cursor2.png"),pointer}
+
+/**************************************************************************
+     CONTAINER
+**************************************************************************/
+#wrapper{margin:90px auto}
+#container{min-width:1024px;width:1024px;margin:0 auto}
+#container p{font-size:24px;line-height:46px;font-weight:100;color:#FFF}
+#boxtxt{min-width:960px;width:1024px;margin:30px auto 0;background:#000;}
+
+/**************************************************************************
+     INTRO
+**************************************************************************/
+#boxintro{min-width:1024px;width:1024px;margin:50px auto}
+#boxintro p{font-size:20px;line-height:46px;font-weight:100;color:#FFF}
+#introtitre{font-family:"Ubuntu",sans-serif;color:#fff;text-transform:capitalize;letter-spacing:-1px;font-size:68px;line-height:68px;font-weight:700;text-align:center;margin:0 auto}
+#intro{font-size:22px;line-height:26px;font-weight:100;color:#FFF;margin:30px auto 0;}
+
+#logo {margin:75px auto;text-align:center}
+#gameover {margin:250px auto 25px;text-align:center}
+#quizz {margin:25px auto;text-align:center}
+
+#play{width:75%;margin:0 auto;text-align:center}
+#replay{width:50%;margin:0 auto;text-align:center}
+#play a.link,#replay a.link{background-color:#09f;border:none;color:#fff;padding:15px 32px;text-align:center;
+    text-decoration:none;display:inline-block;width:75%;font-family:'Francois One',sans-serif;font-size:24px;font-weight:100;text-transform:capitalize;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);}
+#play a.link:hover,#replay a.link:hover{
+    background-color:#fff;color:#09f;
+}
+li.answer form input, li.answer button {
+    background-color:#09f;border:none;color:#fff;padding:15px 32px;text-align:center;
+    text-decoration:none;display:inline-block;width:98%;font-family:'Francois One',sans-serif;font-size:24px;font-weight:100;text-transform:capitalize;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+li.answer form input:hover, li.answer button:hover {
+    background-color:#fff;color:#09f;
+}
+
+.left{text-align:left}
+.right{text-align:right}
+.center{text-align:center}
+.justify{text-align:justify}
+
+.score{font-family:'Francois One',sans-serif;font-size:50px}
+.timer #timer {font-family:'Francois One',sans-serif;font-size:75px}
+.start{}
+.life{}
+
+/**************************************************************************
+     BOX NOTICE, ALERTE, INFO...
+**************************************************************************/
+#tip{min-width:1024px;width:1024px;margin:50px auto 0;padding: 0 30px;background:#09f;-webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,.3);-moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,.3);box-shadow: 0px 0px 5px 2px rgba(0,0,0,.3);}
+.tip:before{content:'ASTUCE !';background:#fff;color:#09f;font-size:20px;font-family:"Cuprum",sans-serif;font-weight:700;padding:2px 7px 3px 7px;line-height:24px;position:absolute;left:0;top:0;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-transform:rotate(-5deg) translateX(-10px) translateY(-25px);-moz-transform:rotate(-5deg) translateX(-10px) translateY(-25px);-ms-transform:rotate(-5deg) translateX(-10px) translateY(-25px);-o-transform:rotate(-5deg) translateX(-10px) translateY(-25px);transform:rotate(-5deg) translateX(-10px) translateY(-25px)}
+.tip{position:relative;margin:2em 0 1.5em 0;font-size:20px;font-family:"Cuprum",sans-serif;line-height:46px;font-weight:300}
+.tip strong{font-weight:700}
+
+#alerte{min-width:1024px;width:1024px;margin:50px auto 0;padding: 0 30px;background:#f00;-webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,.3);-moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,.3);box-shadow: 0px 0px 5px 2px rgba(0,0,0,.3);}
+.alerte:before{content:'ATTENTION !';background:#fff;color:#f34;font-size:20px;font-family:"Cuprum",sans-serif;font-weight:700;padding:2px 7px 3px 7px;line-height:24px;position:absolute;left:0;top:0;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-transform:rotate(-5deg) translateX(-10px) translateY(-25px);-moz-transform:rotate(-5deg) translateX(-10px) translateY(-25px);-ms-transform:rotate(-5deg) translateX(-10px) translateY(-25px);-o-transform:rotate(-5deg) translateX(-10px) translateY(-25px);transform:rotate(-5deg) translateX(-10px) translateY(-25px)}
+.alerte{position:relative;margin:2em 0 1.5em 0;font-size:20px;font-family:"Cuprum",sans-serif;line-height:46px;font-weight:300}
+.alerte strong{font-weight:700}
+
+#note{min-width:1024px;width:1024px;margin:50px auto 0;padding: 0 30px;background:#fe7;-webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,.3);-moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,.3);box-shadow: 0px 0px 5px 2px rgba(0,0,0,.3);}
+.note:before{content:'NOTE :';background:#fd0;color:#222;font-size:20px;font-family:"Cuprum",sans-serif;font-weight:700;padding:2px 7px 3px 7px;line-height:24px;position:absolute;left:0;top:0;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-transform:rotate(-5deg) translateX(-10px) translateY(-25px);-moz-transform:rotate(-5deg) translateX(-10px) translateY(-25px);-ms-transform:rotate(-5deg) translateX(-10px) translateY(-25px);-o-transform:rotate(-5deg) translateX(-10px) translateY(-25px);transform:rotate(-5deg) translateX(-10px) translateY(-25px)}
+.note{position:relative;margin:2em 0 1.5em 0;font-size:20px;font-family:"Cuprum",sans-serif;line-height:46px;font-weight:300;color:#222;}
+.note strong{font-weight:700}
+
+#mod{min-width:1024px;width:1024px;margin:50px auto 0;padding: 0 30px;background:#2d0;-webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,.3);-moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,.3);box-shadow: 0px 0px 5px 2px rgba(0,0,0,.3);}
+.mod:before{content:'MODÉRATION';background:#fff;color:#2d0;font-size:20px;font-family:"Cuprum",sans-serif;font-weight:700;padding:2px 7px 3px 7px;line-height:24px;position:absolute;left:0;top:0;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-transform:rotate(-5deg) translateX(-10px) translateY(-25px);-moz-transform:rotate(-5deg) translateX(-10px) translateY(-25px);-ms-transform:rotate(-5deg) translateX(-10px) translateY(-25px);-o-transform:rotate(-5deg) translateX(-10px) translateY(-25px);transform:rotate(-5deg) translateX(-10px) translateY(-25px)}
+.mod{position:relative;margin:2em 0 1.5em 0;font-size:20px;font-family:"Cuprum",sans-serif;line-height:46px;}
+.mod strong{font-weight:700}
+
+#code{min-width:1024px;width:1024px;margin:50px auto 0;padding: 0 30px;background:#272822;-webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,.3);-moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,.3);box-shadow: 0px 0px 5px 2px rgba(0,0,0,.3);}
+.code:before{content:'</XML>';background:#f92672;color:#fff;font-size:20px;font-family:"Cuprum",sans-serif;font-weight:700;padding:2px 7px 3px 7px;line-height:24px;position:absolute;left:0;top:0;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-transform:rotate(-5deg) translateX(-10px) translateY(-25px);-moz-transform:rotate(-5deg) translateX(-10px) translateY(-25px);-ms-transform:rotate(-5deg) translateX(-10px) translateY(-25px);-o-transform:rotate(-5deg) translateX(-10px) translateY(-25px);transform:rotate(-5deg) translateX(-10px) translateY(-25px)}
+.code{position:relative;margin:1em 0 1em 0;font-size:17px;font-family:"Cuprum",sans-serif;line-height:1px;}
+.code strong{font-weight:700}
+.codetab{margin-left:2em}
+
+/**************************************************************************
+  MENU
+**************************************************************************/
+#menu{background:#111;margin:-90px 0 0 0;width:100%;padding:0;display:block;position:fixed;z-index:9998;border-bottom:4px solid #06f;-webkit-box-shadow:0px 7px 10px -3px rgba(0,0,0,0.95);-moz-box-shadow:0px 7px 10px -3px rgba(0,0,0,0.95);box-shadow:0px 7px 10px -3px rgba(0,0,0,0.95)}
+#menu ul{list-style:none;margin:0;padding:0;display:block}
+#menu ul:after,#menu:after{content:"";display:block;font-size:0;height:0;clear:both;visibility:hidden}
+#menu ul li{width:200px;margin:0;padding:0;display:list-item;list-style:none;float:left;position:relative}
+#menu ul li i{width:35px;line-height:inherit}
+#menu ul li.paypal a{background:#fff;color:#111}
+#menu ul li.paypal a:hover{background:#fff;color:#111}
+#menu ul li a{text-align:center;font-size:15px;text-decoration:none;display:block;padding:15px 30px;
+  -webkit-transition:color .2s ease;
+  -moz-transition:color .2s ease;
+  -ms-transition:color .2s ease;
+  -o-transition:color .2s ease;
+  transition:color .2s ease;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box
+}
+#menu ul li a:hover{background-color:rgba(255,255,255,0.07)}
+#menu ul li ul{position:absolute;left:-9999px;top:auto}
+#menu ul li ul li{max-height: 0;
+  position: absolute;
+  -webkit-transition: max-height 0.4s ease-out;
+  -moz-transition: max-height 0.4s ease-out;
+  -ms-transition: max-height 0.4s ease-out;
+  -o-transition: max-height 0.4s ease-out;
+  transition: max-height 0.4s ease-out;
+  background:#06f}
+#menu ul li ul li a{font-family:"Cuprum",sans-serif;font-size:15px;text-align:left;text-transform:uppercase;color:#eee;letter-spacing:0;display:block;padding:11px 10px 11px 15px}
+#menu ul li ul li:hover > a,#menu ul li ul li.active > a{color:#000;background:#fff}
+#menu ul li ul li:hover:after,#menu ul li ul li.active:after{background:#333}
+#menu ul li ul li:hover > ul{left:100%;top:0}
+#menu ul li ul li:hover > ul > li{max-height:72px;position:relative}
+#menu > ul > li{float:left}
+#menu.align-center > ul > li{float:none;display:inline-block}
+#menu.align-center > ul{text-align:center}
+#menu.align-center ul ul{text-align:left}
+#menu.align-right > ul{float:right}
+#menu.align-right > ul > li:hover > ul{left:auto;right:0}
+#menu.align-right ul ul li:hover > ul{right:100%;left:auto}
+#menu.align-right ul ul li a{text-align:right}
+#menu > ul > li:after{content:"";display:block;position:absolute;width:100%;height:0;top:0;z-index:0;background:#06f;-webkit-transition:height .2s;-moz-transition:height .2s;-ms-transition:height .2s;-o-transition:height .2s;transition:height .2s}
+#menu > ul > li > a{font-family:"Cuprum",sans-serif;font-size:15px;color:#ccc;padding:15px 20px;text-transform:uppercase;z-index:2;position:relative}
+#menu > ul > li:hover:after,#menu > ul > li.active:after{height:100%}
+#menu > ul > li:hover > a,#menu > ul > li.active > a{color:#fff}
+#menu > ul > li:hover > a:after,#menu > ul > li.active > a:after{background:#000}
+#menu > ul > li:hover > a:before,#menu > ul > li.active > a:before{border-top-color:#06f}
+#menu > ul > li:hover > ul{left:0}
+#menu > ul > li:hover > ul > li{max-height:72px;position:relative}
+#menu #menu-button{display:none}
+#menu > ul > li > a{display:block}
+#menu > ul > li{width:auto}
+#menu > ul > li > ul{width:170px;display:block}
+#menu > ul > li > ul > li{width:170px;display:block}
+
+/* Test lettres */
+.hi-score-username .sprite { display: block; text-indent: 100%; white-space: nowrap; overflow: hidden; float: left;}
+
+.glyphe-space {
+    width: 15px;
+    height: 38px;
+}
+.glyphe-a {
+    background: url('../img/ui/alpha_48.png') no-repeat -11px -6px;
+    width: 26px;
+    height: 38px;
+}
+.glyphe-b {
+    background: url('../img/ui/alpha_48.png') no-repeat -57px -6px;
+    width: 29px;
+    height: 38px;
+}
+.glyphe-c {
+    background: url('../img/ui/alpha_48.png') no-repeat -107px -6px;
+    width: 30px;
+    height: 37px;
+}
+.glyphe-d {
+    background: url('../img/ui/alpha_48.png') no-repeat -152px -6px;
+    width: 30px;
+    height: 38px;
+}
+.glyphe-e {
+    background: url('../img/ui/alpha_48.png') no-repeat -202px -6px;
+    width: 28px;
+    height: 38px;
+}
+.glyphe-f {
+    background: url('../img/ui/alpha_48.png') no-repeat -250px -6px;
+    width: 27px;
+    height: 38px;
+}
+.glyphe-g {
+    background: url('../img/ui/alpha_48.png') no-repeat -297px -6px;
+    width: 30px;
+    height: 37px;
+}
+.glyphe-h {
+    background: url('../img/ui/alpha_48.png') no-repeat -345px -6px;
+    width: 30px;
+    height: 38px;
+}
+.glyphe-i {
+    background: url('../img/ui/alpha_48.png') no-repeat -14px -54px;
+    width: 21px;
+    height: 38px;
+}
+.glyphe-j {
+    background: url('../img/ui/alpha_48.png') no-repeat -60px -54px;
+    width: 27px;
+    height: 37px;
+}
+.glyphe-k {
+    background: url('../img/ui/alpha_48.png') no-repeat -104px -54px;
+    width: 30px;
+    height: 38px;
+}
+.glyphe-l {
+    background: url('../img/ui/alpha_48.png') no-repeat -154px -54px;
+    width: 25px;
+    height: 37px;
+}
+.glyphe-m {
+    background: url('../img/ui/alpha_48.png') no-repeat -199px -54px;
+    width: 33px;
+    height: 38px;
+}
+.glyphe-n {
+    background: url('../img/ui/alpha_48.png') no-repeat -248px -54px;
+    width: 32px;
+    height: 38px;
+}
+.glyphe-o {
+    background: url('../img/ui/alpha_48.png') no-repeat -297px -54px;
+    width: 30px;
+    height: 37px;
+}
+.glyphe-p {
+    background: url('../img/ui/alpha_48.png') no-repeat -344px -54px;
+    width: 29px;
+    height: 38px;
+}
+.glyphe-q {
+    background: url('../img/ui/alpha_48.png') no-repeat -9px -102px;
+    width: 31px;
+    height: 40px;
+}
+.glyphe-r {
+    background: url('../img/ui/alpha_48.png') no-repeat -57px -102px;
+    width: 29px;
+    height: 38px;
+}
+.glyphe-s {
+    background: url('../img/ui/alpha_48.png') no-repeat -106px -102px;
+    width: 29px;
+    height: 38px;
+}
+.glyphe-t {
+    background: url('../img/ui/alpha_48.png') no-repeat -152px -102px;
+    width: 31px;
+    height: 38px;
+}
+.glyphe-u {
+    background: url('../img/ui/alpha_48.png') no-repeat -201px -102px;
+    width: 30px;
+    height: 37px;
+}
+.glyphe-v {
+    background: url('../img/ui/alpha_48.png') no-repeat -248px -102px;
+    width: 32px;
+    height: 38px;
+}
+.glyphe-w {
+    background: url('../img/ui/alpha_48.png') no-repeat -293px -101px;
+    width: 38px;
+    height: 39px;
+}
+.glyphe-x {
+    background: url('../img/ui/alpha_48.png') no-repeat -345px -102px;
+    width: 30px;
+    height: 38px;
+}
+.glyphe-y {
+    background: url('../img/ui/alpha_48.png') no-repeat -8px -150px;
+    width: 32px;
+    height: 37px;
+}
+.glyphe-z {
+    background: url('../img/ui/alpha_48.png') no-repeat -58px -150px;
+    width: 29px;
+    height: 38px;
+}
+.glyphe-0 {
+    background: url('../img/ui/alpha_48.png') no-repeat -105px -150px;
+    width: 30px;
+    height: 37px;
+}
+.glyphe-1 {
+    background: url('../img/ui/alpha_48.png') no-repeat -157px -150px;
+    width: 22px;
+    height: 38px;
+}
+.glyphe-2 {
+    background: url('../img/ui/alpha_48.png') no-repeat -201px -150px;
+    width: 29px;
+    height: 38px;
+}
+.glyphe-3 {
+    background: url('../img/ui/alpha_48.png') no-repeat -250px -150px;
+    width: 29px;
+    height: 38px;
+}
+.glyphe-4 {
+    background: url('../img/ui/alpha_48.png') no-repeat -299px -150px;
+    width: 27px;
+    height: 38px;
+}
+.glyphe-5 {
+    background: url('../img/ui/alpha_48.png') no-repeat -345px -150px;
+    width: 30px;
+    height: 37px;
+}
+.glyphe-6 {
+    background: url('../img/ui/alpha_48.png') no-repeat -10px -198px;
+    width: 29px;
+    height: 37px;
+}
+.glyphe-7 {
+    background: url('../img/ui/alpha_48.png') no-repeat -57px -198px;
+    width: 30px;
+    height: 38px;
+}
+.glyphe-8 {
+    background: url('../img/ui/alpha_48.png') no-repeat -105px -198px;
+    width: 30px;
+    height: 37px;
+}
+.glyphe-9 {
+    background: url('../img/ui/alpha_48.png') no-repeat -153px -198px;
+    width: 30px;
+    height: 37px;
+}

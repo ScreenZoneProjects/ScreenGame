@@ -1,0 +1,16 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+<!-- DEBUT : GAME OVER -->
+<div id="gameover">
+    <img src="{{ asset('assets/img/ui/game_over.png') }}">
+</div>
+<!-- FIN : GAME OVER -->
+
+<!-- DEBUT : BOUTON REPLAY -->
+<div id="replay">
+    <a href="{{ url('home') }}" class="link">REJOUER UNE PARTIE ?</a><br><br>
+    <a href="http://www.screenzone.fr/forum/" class="link" target="_blank">VISITER LE FORUM SCREENZONE ^^</a>
+</div>
+<!-- FIN : BOUTON REPLAY -->
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "layout.twig" %}
+
+{% block pre_wrapper %}{% include 'menu.twig' with {'add_rules_link': true} %}{% endblock %}
+
+{% block content %}
+<!-- DEBUT : DMD -->
+<div id="dmd">
+    <table width="100%">
+        <tbody>
+            <tr>
+                <td width="33%" class="center">
+                    HI-SCORE<br><br>
+                    <span class="score">
+                    {% for digit in max_score.score|str_pad_left(6, 'E')|split('') %}
+                        <img src="{{ asset('assets/img/led/led-' ~ digit ~ '.png') }}" alt="" />
+                    {% endfor %}
+                    </span><br>
+                    <span class="hi-score-username">
+                    {% for char in max_score.username|split('') %}
+                        {% if char == " " %}
+                            <span class="sprite glyphe-space">&nbsp;</span>
+                        {% else %}
+                            <span class="sprite glyphe-{{ char|lower }}">{{ char }}</span>
+                        {% endif %}
+                    {% endfor %}
+                    </span>
+                </td>
+                <td width="33%" class="center">
+                    TIME REMANING<br><br>
+                    <span class="timer">
+                        <p id="timer" data-timer="container" data-timeout="{{ answer_timeout }}"></p>
+                    </span>
+                </td>
+                <td width="33%" class="center">
+                    SCORE<br><br><span class="score">{{ score }}</span><br>
+                    {% for i in 1..life %}
+                        <img src="{{ asset('assets/img/ui/heart.png') }}" alt="" />
+                    {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- DEBUT : DMD -->
+
+<br><br><br><br><br>
+
+<!-- DEBUT : QUIZ -->
+<div id="quiz">
+    <form method="post" data-form>
+        <table width="1024px">
+            <tbody>
+                <tr>
+                    <td width="640px" class="center"><img src="{{ asset('assets/img/snaps/' ~ game.image) }}" alt="{{ game.name }}" /></td>
+                    <td width="24px"></td>
+                    <td width="360px" class="center">
+                        <ul>
+                        {% for game in answers %}
+                            <li class="answer">
+                                <button type="submit" name="answer" value="{{ game.id }}">{{ game.name }}</button>
+                                <br><br>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<!-- FIN : QUIZZ -->
+{% endblock %}

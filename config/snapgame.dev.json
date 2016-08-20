@@ -1,0 +1,15 @@
+{
+    "database": {
+        "host": "127.0.0.1",
+        "port": "",
+        "username": "snap_game",
+        "password": "9i6%eS89a92wyb!H#vfR",
+        "dbname": "snap_game"
+    },
+    "nb_errors_allowed": 3,
+    "answer_timeout": 10,
+    "nb_choices": 3,
+    "score_limit_for_new_answer": 10000,
+    "life_steps": [10000, 25000, 50000, 100000],
+    "debug": true
+}

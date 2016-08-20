@@ -1,0 +1,64 @@
+{% extends "layout.twig" %}
+
+{% block pre_wrapper %}{% include 'menu.twig' with {'add_rules_link': false} %}{% endblock %}
+
+{% block content %}
+<!-- DEBUT : LOGO -->
+<div id="logo"><img src="{{ asset('assets/img/ui/logo.png') }}" /></div>
+<!-- FIN : LOGO -->
+
+<!-- DEBUT : CONTAINER -->
+<div id="boxintro">
+    <div id="introtitre">RÈGLES DU JEU</div>
+    <div id="intro">
+        <table width="1024px">
+            <tbody>
+                <tr>
+                    <td width="500px" class="justify">
+                        Vous devez trouver un jeu arcade parmi la liste proposée, en identifiant la capture d'écran.
+                        Il suffit de cliquer sur le bon titre ! Vous disposez de dix secondes à chaque nouvelle énigme.
+                        Au fur et à mesure que vous réussissez, le nombre de jeux proposés est augmenté, afin d'ajouter du piment !<br><br>
+                        Vous disposez de trois vies, vous en perdez une à chaque mauvaise réponse ou si le chronomètre arrive à zéro sans réponse.
+                    </td>
+                    <td width="24px"></td>
+                    <td width="500px" class="left">
+                        Hi-Score<br>
+                        <br>
+                        Chaque jeu trouvé rapporte :<br>
+                        + 100 Pts x le nombre de propositions.<br>
+                        + 10 pts x le nombre de secondes restantes.<br>
+                        <br>
+                        1Up - Vie supplémentaire<br>
+                        Vous gagnez une vie à 10.000, 25.000, 50.000 et 100.000 points !
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- FIN : CONTAINER -->
+
+<!-- DEBUT : BOUTON PLAY -->
+<div id="play">
+    <a href="{{ url('game') }}" class="link">CLIQUEZ ICI POUR COMMENCER</a><br><br><br>
+</div>
+<!-- FIN : BOUTON PLAY -->
+
+<!-- DEBUT : BOX TIPS -->
+<div id="tip" class="tip">
+    <strong>Soyez le plus rapide possible, chaque seconde compte pour votre Hi-Score ! ^^ "Kam3leoN"</strong>
+</div>
+<!-- FIN : BOX TIPS -->
+
+<!-- DEBUT : TOPFIVE -->
+<div id="topfive">
+    <table width="100%">
+        <tbody>
+            <tr>
+                ...
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- FIN : TOPFIVE -->
+{% endblock %}
