@@ -20,18 +20,22 @@ require_once __DIR__.'/../vendor/autoload.php';
 
 $app = new BaseApplication();
 
+// Configuration du fichier de config
+$env = getenv('APP_ENV') ?: 'prod';
+
+$app->register(new ConfigServiceProvider(), [
+    'config.dir'    => __DIR__.'/../config',
+    'config.format' => sprintf('%%key%%.%s.json', $env),
+]);
+
+$app['debug'] = $app['config']['snapgame']['debug'];
+
 // Configuration de Twig
 $app->register(new TwigServiceProvider(), [
     'twig.path' => __DIR__.'/../app/SnapGame/views',
 ]);
 
 $app->extend('twig', function ($twig, $app) {
-    $twig->addFilter(
-        new Twig_SimpleFilter('str_pad_left', function ($input, $pad_length, $pad_string = '') {
-            return str_pad($input, $pad_length, $pad_string, STR_PAD_LEFT);
-        })
-    );
-
     // Rendu du pseudo d'un joueur avec les lettres glyph
     $twig->addFilter(
         new Twig_SimpleFilter('render_username_glyph', function ($input) {
@@ -53,12 +57,13 @@ $app->extend('twig', function ($twig, $app) {
 
     // Rendu d'un score avec les LEDs
     $twig->addFilter(
-        new Twig_SimpleFilter('render_score_leds', function ($input) {
-            $return = '';
-            $input  = str_pad($input, 6, 'E', STR_PAD_LEFT);
+        new Twig_SimpleFilter('render_score_leds', function ($input, $assets_base) {
+            $return         = '';
+            $input          = str_pad($input, 6, 'E', STR_PAD_LEFT);
+            $assets_base    = substr($assets_base, 0, strpos($assets_base, '?'));
 
             for ($x = 0; $x < mb_strlen($input); $x++) {
-                $return .= sprintf('<img src="assets/img/led/led-%s.png" alt="" />', $input[$x]);
+                $return .= sprintf('<img src="%s/led/led-%s.png" alt="" />', $assets_base, $input[$x]);
             }
 
             return $return;
@@ -86,16 +91,6 @@ $app->register(new AssetServiceProvider(), [
         ],
     ],
 ]);
-
-// Configuration du fichier de config
-$env = getenv('APP_ENV') ?: 'prod';
-
-$app->register(new ConfigServiceProvider(), [
-    'config.dir'    => __DIR__.'/../config',
-    'config.format' => sprintf('%%key%%.%s.json', $env),
-]);
-
-$app['debug'] = $app['config']['snapgame']['debug'];
 
 // Configuration de Doctrine
 $app->register(new DoctrineServiceProvider(), [

@@ -59,7 +59,7 @@
                 <td class="left">
                     <span class="hi-score-username">{{ score.username|render_username_glyph }}</span>
                 </td>
-                <td class="right">{{ score.score|render_score_leds }}</td>
+                <td class="right">{{ score.score|render_score_leds(asset('assets/img')) }}</td>
             </tr>
         {% endfor %}
         </tbody>

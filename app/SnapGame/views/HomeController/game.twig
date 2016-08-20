@@ -10,7 +10,7 @@
             <tr>
                 <td width="40%" class="center">
                     HI-SCORE<br><br>
-                    <span class="score">{{ max_score.score|render_score_leds }}</span><br>
+                    <span class="score">{{ max_score.score|render_score_leds(asset('assets/img')) }}</span><br>
                     <span class="hi-score-username">{{ max_score.username|render_username_glyph }}</span>
                 </td>
                 <td width="30%" class="center">
