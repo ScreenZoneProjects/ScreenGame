@@ -173,7 +173,7 @@ li.answer form input:hover, li.answer button:hover, li.answer button.hover {
 #menu > ul > li > ul > li{width:170px;display:block}
 
 /* Test lettres */
-.hi-score-username .sprite { display: block; text-indent: 100%; white-space: nowrap; overflow: hidden; float: left;}
+.hi-score-username .sprite { display: inline-block; text-indent: 100%; white-space: nowrap; overflow: hidden; }
 
 .glyphe-space {
     width: 15px;
