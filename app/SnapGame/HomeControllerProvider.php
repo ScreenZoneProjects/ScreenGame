@@ -134,12 +134,22 @@ class HomeControllerProvider implements ControllerProviderInterface {
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $data = $form->getData();
+            $data       = $form->getData();
+            $existing   = $app['db']->fetchAssoc('SELECT id, score FROM scores WHERE username = ?', [$data['username']]);
 
-            $app['db']->executeUpdate(
-                'INSERT INTO scores (username, score, created_at) VALUES(?, ?, NOW())',
-                [$data['username'], $app['session']->get('current_score')]
-            );
+            // Si le joueur n'existe pas, on le crée
+            if (false === $existing) {
+                $app['db']->executeUpdate(
+                    'INSERT INTO scores (username, score, created_at) VALUES (?, ?, NOW())',
+                    [$data['username'], $app['session']->get('current_score')]
+                );
+            // Sinon on met à jour son score si il est meilleur
+            } elseif ($app['session']->get('current_score') > $existing['score']) {
+                $app['db']->executeUpdate(
+                    'UPDATE scores SET score = ?, created_at = NOW() WHERE id = ?',
+                    [$app['session']->get('current_score'), $existing['id']]
+                );
+            }
 
             $app['session']->remove('current_score');
 
