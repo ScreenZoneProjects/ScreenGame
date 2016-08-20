@@ -32,12 +32,59 @@ $app->extend('twig', function ($twig, $app) {
         })
     );
 
+    // Rendu du pseudo d'un joueur avec les lettres glyph
+    $twig->addFilter(
+        new Twig_SimpleFilter('render_username_glyph', function ($input) {
+            $return = '';
+
+            for ($x = 0; $x < mb_strlen($input); $x++) {
+                $char = $input[$x];
+
+                if (' ' === $char) {
+                    $return .= '<span class="sprite glyphe-space">&nbsp;</span>';
+                } else {
+                    $return .= sprintf('<span class="sprite glyphe-%s">%s</span>', mb_strtolower($char), $char);
+                }
+            }
+
+            return $return;
+        }, ['is_safe' => ['html']])
+    );
+
+    // Rendu d'un score avec les LEDs
+    $twig->addFilter(
+        new Twig_SimpleFilter('render_score_leds', function ($input) {
+            $return = '';
+            $input  = str_pad($input, 6, 'E', STR_PAD_LEFT);
+
+            for ($x = 0; $x < mb_strlen($input); $x++) {
+                $return .= sprintf('<img src="assets/img/led/led-%s.png" alt="" />', $input[$x]);
+            }
+
+            return $return;
+        }, ['is_safe' => ['html']])
+    );
+
     return $twig;
 });
 
 // Configuration des assets
 $app->register(new AssetServiceProvider(), [
     'assets.version' => 'v201608202',
+    'assets.named_packages' => [
+        'css' => [
+            'base_path' => 'assets/css/',
+        ],
+        'images' => [
+            'base_path' => 'assets/img/',
+        ],
+        'js' => [
+            'base_path' => 'assets/js/',
+        ],
+        'vendor' => [
+            'base_path' => 'assets/vendor/',
+        ],
+    ],
 ]);
 
 // Configuration du fichier de config

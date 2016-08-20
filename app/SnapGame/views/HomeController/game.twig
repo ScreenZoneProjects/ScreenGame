@@ -10,20 +10,8 @@
             <tr>
                 <td width="40%" class="center">
                     HI-SCORE<br><br>
-                    <span class="score">
-                    {% for digit in max_score.score|str_pad_left(6, 'E')|split('') %}
-                        <img src="{{ asset('assets/img/led/led-' ~ digit ~ '.png') }}" alt="" />
-                    {% endfor %}
-                    </span><br>
-                    <span class="hi-score-username">
-                    {% for char in max_score.username|split('') %}
-                        {% if char == " " %}
-                            <span class="sprite glyphe-space">&nbsp;</span>
-                        {% else %}
-                            <span class="sprite glyphe-{{ char|lower }}">{{ char }}</span>
-                        {% endif %}
-                    {% endfor %}
-                    </span>
+                    <span class="score">{{ max_score.score|render_score_leds }}</span><br>
+                    <span class="hi-score-username">{{ max_score.username|render_username_glyph }}</span>
                 </td>
                 <td width="30%" class="center">
                     TIME REMANING<br><br>
@@ -34,7 +22,7 @@
                 <td width="30%" class="center">
                     SCORE<br><br><span class="score">{{ score }}</span><br>
                     {% for i in 1..life %}
-                        <img src="{{ asset('assets/img/ui/heart.png') }}" alt="" />
+                        <img src="{{ asset('ui/heart.png', 'images') }}" alt="" />
                     {% endfor %}
                 </td>
             </tr>
@@ -51,7 +39,7 @@
         <table width="1024px">
             <tbody>
                 <tr>
-                    <td width="640px" class="center"><img src="{{ asset('assets/img/snaps/' ~ game.image) }}" alt="{{ game.name }}" /></td>
+                    <td width="640px" class="center"><img src="{{ asset('snaps/' ~ game.image, 'images') }}" alt="{{ game.name }}" /></td>
                     <td width="24px"></td>
                     <td width="360px" class="center">
                         <ul>
@@ -74,5 +62,5 @@
 {% block js %}
     {{ parent() }}
 
-    <script src="{{ asset('assets/js/spatial_navigation.js') }}"></script>
+    <script src="{{ asset('spatial_navigation.js', 'js') }}"></script>
 {% endblock %}

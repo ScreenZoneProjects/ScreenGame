@@ -57,21 +57,9 @@
         {% for score in top_five %}
             <tr>
                 <td class="left">
-                    <span class="hi-score-username">
-                    {% for char in score.username|split('') %}
-                        {% if char == " " %}
-                            <span class="sprite glyphe-space">&nbsp;</span>
-                        {% else %}
-                            <span class="sprite glyphe-{{ char|lower }}">{{ char }}</span>
-                        {% endif %}
-                    {% endfor %}
-                    </span>
+                    <span class="hi-score-username">{{ score.username|render_username_glyph }}</span>
                 </td>
-                <td class="right">
-                {% for digit in score.score|str_pad_left(6, 'E')|split('') %}
-                    <img src="{{ asset('assets/img/led/led-' ~ digit ~ '.png') }}" alt="" />
-                {% endfor %}
-                </td>
+                <td class="right">{{ score.score|render_score_leds }}</td>
             </tr>
         {% endfor %}
         </tbody>
