@@ -23,6 +23,11 @@
                     <td width="24px"></td>
                     <td width="500px" class="left">
                         Hi-Score<br>
+                        <ul>
+                        {% for score in top_five %}
+                            <li>{{ score.username }} : {{ score.score }} pts</li>
+                        {% endfor %}
+                        </ul>
                         <br>
                         Chaque jeu trouvé rapporte :<br>
                         + 100 Pts x le nombre de propositions.<br>

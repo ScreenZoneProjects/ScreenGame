@@ -39,7 +39,12 @@ class HomeControllerProvider implements ControllerProviderInterface {
         $app['session']->set('game_begin', true);
         $this->initGame($app);
 
-        return $app['twig']->render('HomeController/index.twig');
+        // Récupère le TOP 5 des scores
+        $top_five  = $app['db']->fetchAll('SELECT username, score FROM scores ORDER BY score DESC LIMIT 5');
+
+        return $app['twig']->render('HomeController/index.twig', [
+            'top_five' => $top_five,
+        ]);
     }
 
     public function game(Application $app, Request $request) {
