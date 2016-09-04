@@ -70,6 +70,11 @@ $app->extend('twig', function ($twig, $app) {
         }, ['is_safe' => ['html']])
     );
 
+    // base64 des images
+    $twig->addFilter(new Twig_SimpleFilter('imgbase64', function ($image_path) {
+        return base64_encode(file_get_contents(__DIR__.'/assets/img/snaps/'.$image_path));
+    }));
+
     return $twig;
 });
 
