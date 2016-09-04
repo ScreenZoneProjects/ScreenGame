@@ -11,6 +11,6 @@
 </IfModule>
 
 <IfModule mod_setenvif.c>
-    SetEnvIf Host ^local\.djlechuck\.fr$ APP_ENV=dev
+    SetEnvIf Host ^local\.|127\.0\.0\.1|192\.168\.$ APP_ENV=dev
     SetEnvIf Host ^www\.screenzone\.fr$ APP_ENV=prod
 </IfModule>
