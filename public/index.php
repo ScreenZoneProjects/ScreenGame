@@ -80,7 +80,7 @@ $app->extend('twig', function ($twig, $app) {
 
 // Configuration des assets
 $app->register(new AssetServiceProvider(), [
-    'assets.version' => 'v201608202',
+    'assets.version' => 'v20160904',
     'assets.named_packages' => [
         'css' => [
             'base_path' => 'assets/css/',
