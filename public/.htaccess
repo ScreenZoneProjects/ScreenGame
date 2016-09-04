@@ -2,9 +2,12 @@
     Options -MultiViews
 
     RewriteEngine On
+
+    RewriteCond %{HTTP_HOST} =www.screenzone.fr
+    RewriteRule ^ - [E=FRB:/games/snapgame2/public/]
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [QSA,L]
+    RewriteRule ^ %{ENV:FRB}index.php [QSA,L]
 </IfModule>
 
 <IfModule mod_setenvif.c>
