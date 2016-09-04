@@ -80,6 +80,7 @@ li.answer form input:hover, li.answer button:hover, li.answer button.hover {
 .right{text-align:right}
 .center{text-align:center}
 .justify{text-align:justify}
+.no-display{display:none}
 
 .score{font-family:'Francois One',sans-serif;font-size:50px}
 .timer #timer {font-family:'Francois One',sans-serif;font-size:75px}

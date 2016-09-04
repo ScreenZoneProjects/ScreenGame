@@ -92,8 +92,11 @@ class HomeControllerProvider implements ControllerProviderInterface {
 
         // Récupération d'un jeu, de X réponses au hasard et du high-score
         $game       = $app['db']->fetchAssoc('SELECT id, name, image FROM games ORDER BY RAND() LIMIT 1');
-        $answers    = $app['db']->fetchAll(sprintf('SELECT id, name FROM games ORDER BY RAND() LIMIT %u', $app['session']->get('nb_choices')));
+        $answers    = $app['db']->fetchAll(sprintf('SELECT id, name FROM games WHERE id != %u ORDER BY RAND() LIMIT %u', $game['id'], $app['session']->get('nb_choices') - 1));
+        $answers[]  = $game;
         $max_score  = $app['db']->fetchAssoc('SELECT username, score FROM scores ORDER BY score DESC LIMIT 1');
+
+        shuffle($answers);
 
         $app['session']->set('answer', (int) $game['id']);
         $app['session']->set('time_begin', time());

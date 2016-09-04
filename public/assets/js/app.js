@@ -19,9 +19,9 @@ $(function () {
             }, 10);
         };
 
-        /*countdown(function () {
+        countdown(function () {
             $("[data-form]").submit();
-        });*/
+        });
     }
 
     var $answers = $("[data-answer]");
