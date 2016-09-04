@@ -24,7 +24,7 @@ $app = new BaseApplication();
 $env = getenv('APP_ENV') ?: 'prod';
 
 $app->register(new ConfigServiceProvider(), [
-    'config.dir'    => __DIR__.'/../data/config',
+    'config.dir'    => realpath(__DIR__.'/../data/config'),
     'config.format' => sprintf('%%key%%.%s.json', $env),
 ]);
 
