@@ -39,7 +39,13 @@
         <table width="1024px">
             <tbody>
                 <tr>
-                    <td width="640px" class="center"><img src="data:image/png;base64,{{ game.image|imgbase64 }}" alt="{{ game.name }}" /></td>
+                    <td width="640px" class="center scanlines-wrap">
+                        <div class="scanlines">
+                            <img src="data:image/png;base64,{{ game.image|imgbase64 }}" />
+                            <img src="data:image/png;base64,{{ game.image|imgbase64 }}" />
+                            <img src="data:image/png;base64,{{ game.image|imgbase64 }}" />
+                        </div>
+                    </td>
                     <td width="24px"></td>
                     <td width="360px" class="center">
                         <ul>

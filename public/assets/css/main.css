@@ -173,7 +173,9 @@ li.answer form input:hover, li.answer button:hover, li.answer button.hover {
 #menu > ul > li > ul{width:170px;display:block}
 #menu > ul > li > ul > li{width:170px;display:block}
 
-/* Test lettres */
+/**************************************************************************
+  GLYPH LETTERS
+**************************************************************************/
 .hi-score-username .sprite { display: inline-block; text-indent: 100%; white-space: nowrap; overflow: hidden; }
 
 .glyphe-space {
@@ -360,3 +362,129 @@ li.answer form input:hover, li.answer button:hover, li.answer button.hover {
     width: 30px;
     height: 37px;
 }
+
+/**************************************************************************
+  GLITCH EFFECT
+**************************************************************************/
+/*
+  MIXIN(S)
+  =================
+ /chriscoyier/pen/FwJux
+/*
+  (IMAGE) PARAMS
+  =================
+  @mixin imgGlitch($name, $intensity, $width, $height, $top, $left)
+  =================
+  1. Namespace
+  2. Intensity
+  3. Width (px)
+  4. Height (px)
+  5. Top (px, abs pos)
+  6. Left (px, abs pos)
+*/
+@keyframes scanlines-anim-1 {
+  0% {
+    clip: rect(233px, 600px, 192px, 0);
+  }
+  6.66667% {
+    clip: rect(117px, 600px, 224px, 0);
+  }
+  13.33333% {
+    clip: rect(263px, 600px, 181px, 0);
+  }
+  20% {
+    clip: rect(438px, 600px, 36px, 0);
+  }
+  26.66667% {
+    clip: rect(7px, 600px, 202px, 0);
+  }
+  33.33333% {
+    clip: rect(102px, 600px, 105px, 0);
+  }
+  40% {
+    clip: rect(165px, 600px, 348px, 0);
+  }
+  46.66667% {
+    clip: rect(341px, 600px, 182px, 0);
+  }
+  53.33333% {
+    clip: rect(84px, 600px, 244px, 0);
+  }
+  60% {
+    clip: rect(433px, 600px, 49px, 0);
+  }
+  66.66667% {
+    clip: rect(42px, 600px, 28px, 0);
+  }
+  73.33333% {
+    clip: rect(163px, 600px, 273px, 0);
+  }
+  80% {
+    clip: rect(250px, 600px, 279px, 0);
+  }
+  86.66667% {
+    clip: rect(409px, 600px, 72px, 0);
+  }
+  93.33333% {
+    clip: rect(240px, 600px, 58px, 0);
+  }
+  100% {
+    clip: rect(3px, 600px, 295px, 0);
+  }
+}
+@keyframes scanlines-anim-2 {
+  0% {
+    clip: rect(206px, 600px, 259px, 0);
+  }
+  6.66667% {
+    clip: rect(394px, 600px, 169px, 0);
+  }
+  13.33333% {
+    clip: rect(99px, 600px, 210px, 0);
+  }
+  20% {
+    clip: rect(241px, 600px, 237px, 0);
+  }
+  26.66667% {
+    clip: rect(308px, 600px, 161px, 0);
+  }
+  33.33333% {
+    clip: rect(198px, 600px, 396px, 0);
+  }
+  40% {
+    clip: rect(132px, 600px, 328px, 0);
+  }
+  46.66667% {
+    clip: rect(288px, 600px, 18px, 0);
+  }
+  53.33333% {
+    clip: rect(402px, 600px, 121px, 0);
+  }
+  60% {
+    clip: rect(65px, 600px, 97px, 0);
+  }
+  66.66667% {
+    clip: rect(440px, 600px, 368px, 0);
+  }
+  73.33333% {
+    clip: rect(236px, 600px, 113px, 0);
+  }
+  80% {
+    clip: rect(51px, 600px, 100px, 0);
+  }
+  86.66667% {
+    clip: rect(114px, 600px, 355px, 0);
+  }
+  93.33333% {
+    clip: rect(366px, 600px, 411px, 0);
+  }
+  100% {
+    clip: rect(50px, 600px, 402px, 0);
+  }
+}
+.scanlines > img { position: absolute; top: 0px; left: 0px;}
+.scanlines > img:nth-child(2),
+.scanlines > img:nth-child(3) { clip: rect(0, 0, 0, 0);}
+.scanlines > img:nth-child(2) { left: 2px; animation: scanlines-anim-1 2s infinite linear alternate-reverse;}
+.scanlines > img:nth-child(3) { left: -2px; animation: scanlines-anim-2 3s infinite linear alternate-reverse;}
+.scanlines-wrap { margin: 0 auto; text-align: center; position: relative;}
