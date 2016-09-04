@@ -1,5 +1,6 @@
 $(function () {
     // Jeu
+    var timeoutInterval;
     var $timerContainer = $("[data-timer=container]");
 
     if (0 < $timerContainer.length) {
@@ -39,6 +40,10 @@ $(function () {
 
         $answers.on("mouseover", function () {
             $answers.removeClass("hover");
+        }).on("click", function (e) {
+            clearInterval(timeoutInterval);
+
+            return e;
         });
     }
 
