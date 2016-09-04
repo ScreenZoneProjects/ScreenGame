@@ -1,0 +1,27 @@
+{
+  "name": "screenzone-snap-game",
+  "authors": [
+    "DjLeChuck <djlechuck@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "keywords": [
+    "screenzone",
+    "snap",
+    "game"
+  ],
+  "license": "MIT",
+  "homepage": "www.screenzone.fr",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0"
+  }
+}
