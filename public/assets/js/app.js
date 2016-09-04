@@ -22,6 +22,8 @@ $(function () {
         countdown(function () {
             $("[data-form]").submit();
         });
+
+        $("[data-images]").removeClass("no-display");
     }
 
     var $answers = $("[data-answer]");
