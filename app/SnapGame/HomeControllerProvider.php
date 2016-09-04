@@ -68,20 +68,22 @@ class HomeControllerProvider implements ControllerProviderInterface {
                 }
             } else {
                 // Si bonne réponse, calcul...
-                $app['session']->set('score',
-                    $app['session']->get('score') +
+                $new_score =
+                    $previous_score +
                     100 * $app['session']->get('nb_choices') +
                     10 * ($app['config']['snapgame']['answer_timeout'] - $answer_time)
-                );
+                ;
+
+                $app['session']->set('score', $new_score);
 
                 // Si on atteind le palier de score on ajoute une réponse possible
-                $extra_answers = (int) ($app['session']->get('score') / $app['config']['snapgame']['score_limit_for_new_answer']);
+                $extra_answers = (int) ($new_score / $app['config']['snapgame']['score_limit_for_new_answer']);
 
                 $app['session']->set('nb_choices', $app['config']['snapgame']['nb_choices'] + $extra_answers);
 
                 // Si on atteind un palier de vie, on l'ajoute
                 foreach ($app['config']['snapgame']['life_steps'] as $step) {
-                    if ($previous_score < $step && $app['session']->get('score') > $step) {
+                    if ($previous_score < $step && $new_score > $step) {
                         $app['session']->set('life', $app['session']->get('life') + 1);
                     }
                 }
