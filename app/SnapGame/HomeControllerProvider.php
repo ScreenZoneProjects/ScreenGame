@@ -97,20 +97,17 @@ class HomeControllerProvider implements ControllerProviderInterface {
             $passed_answers = [];
         }
 
-        $answer_not_in  = !empty($passed_answers) ? sprintf('WHERE id NOT IN (%s)', implode(',', $passed_answers)) : '';
-        $game           = $app['db']->fetchAssoc(sprintf('SELECT id, name, image FROM games %s ORDER BY RAND() LIMIT 1', $answer_not_in));
-        $answers        = $app['db']->fetchAll(sprintf('SELECT id, name FROM games WHERE id != %u ORDER BY RAND() LIMIT %u', $game['id'], $app['session']->get('nb_choices') - 1));
-        $answers[]      = $game;
-        $max_score      = $app['db']->fetchAssoc('SELECT username, score FROM scores ORDER BY score DESC LIMIT 1');
+        $answer_not_in      = !empty($passed_answers) ? sprintf('WHERE id NOT IN (%s)', implode(',', $passed_answers)) : '';
+        $answers            = $app['db']->fetchAll(sprintf('SELECT id, name, image FROM games %s ORDER BY RAND() LIMIT %u', $answer_not_in, $app['session']->get('nb_choices')));
+        $game               = current($answers);
+        $max_score          = $app['db']->fetchAssoc('SELECT username, score FROM scores ORDER BY score DESC LIMIT 1');
+        $passed_answers[]   = (int) $game['id'];
 
         shuffle($answers);
 
         $app['session']->set('answer', (int) $game['id']);
         $app['session']->set('time_begin', time());
-
-        if (!$app['debug']) {
-            $app['session']->set('passed_answers', array_merge($passed_answers, [$app['session']->get('answer')]));
-        }
+        $app['session']->set('passed_answers', $passed_answers);
 
         return $app['twig']->render('HomeController/game.twig', [
             'game'              => $game,
