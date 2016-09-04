@@ -77,7 +77,7 @@ class HomeControllerProvider implements ControllerProviderInterface {
                 $app['session']->set('score', $new_score);
 
                 // Si on atteind le palier de score on ajoute une réponse possible
-                $extra_answers = (int) ($new_score / $app['config']['snapgame']['score_limit_for_new_answer']);
+                $extra_answers = (int) floor($new_score / $app['config']['snapgame']['score_limit_for_new_answer']);
 
                 $app['session']->set('nb_choices', $app['config']['snapgame']['nb_choices'] + $extra_answers);
 
