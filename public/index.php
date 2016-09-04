@@ -24,7 +24,7 @@ $app = new BaseApplication();
 $env = getenv('APP_ENV') ?: 'prod';
 
 $app->register(new ConfigServiceProvider(), [
-    'config.dir'    => __DIR__.'/../config',
+    'config.dir'    => __DIR__.'/../data/config',
     'config.format' => sprintf('%%key%%.%s.json', $env),
 ]);
 
@@ -33,6 +33,9 @@ $app['debug'] = $app['config']['snapgame']['debug'];
 // Configuration de Twig
 $app->register(new TwigServiceProvider(), [
     'twig.path' => __DIR__.'/../app/SnapGame/views',
+    'twig.options' => [
+        'cache' => realpath(__DIR__ . '/../data/cache'),
+    ],
 ]);
 
 $app->extend('twig', function ($twig, $app) {
