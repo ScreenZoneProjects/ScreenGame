@@ -1,0 +1,27 @@
+{
+    "name": "screenzone/snap-game",
+    "description": "Vous devez trouver un jeu arcade parmi la liste proposée, en identifiant la capture d'écran. Il suffit de cliquer sur le bon titre !",
+    "type": "project",
+    "keywords": ["screenzone", "screenscraper", "snapgame", "snap", "game"],
+    "homepage": "http://www.screenzone.fr/games/snapgame/",
+    "support": {
+        "email": "djlechuck@gmail.com"
+    },
+    "require": {
+        "silex/silex": "^2.0",
+        "twig/twig": "^1.24",
+        "symfony/twig-bridge": "^3.1",
+        "symfony/asset": "^3.1",
+        "gecko-packages/gecko-silex-config-service": "^2.0",
+        "doctrine/dbal": "~2.2",
+        "symfony/form": "^3.1",
+        "symfony/validator": "^3.1",
+        "symfony/translation": "^3.1",
+        "symfony/config": "^3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "SnapGame\\": "app/SnapGame"
+        }
+    }
+}

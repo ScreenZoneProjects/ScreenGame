@@ -1,0 +1,7 @@
+!.gitignore
+vendor/
+.DS_STORE
+*.psd
+data/cache/*
+data/config/*.json
+*.sql

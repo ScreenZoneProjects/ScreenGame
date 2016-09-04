@@ -1,0 +1,72 @@
+{% extends "layout.twig" %}
+
+{% block pre_wrapper %}{% include 'menu.twig' with {'add_rules_link': true} %}{% endblock %}
+
+{% block content %}
+<!-- DEBUT : DMD -->
+<div id="dmd">
+    <table width="100%">
+        <tbody>
+            <tr>
+                <td width="40%" class="center">
+                    HI-SCORE<br><br>
+                    <span class="score">{{ max_score.score|render_score_leds(asset('assets/img')) }}</span><br>
+                    <span class="hi-score-username">{{ max_score.username|render_username_glyph }}</span>
+                </td>
+                <td width="30%" class="center">
+                    TIME REMANING<br><br>
+                    <span class="timer">
+                        <p id="timer" data-timer="container" data-timeout="{{ answer_timeout }}"></p>
+                    </span>
+                </td>
+                <td width="30%" class="center">
+                    SCORE<br><br><span class="score">{{ score }}</span><br>
+                    {% for i in 1..life %}
+                        <img src="{{ asset('ui/heart.png', 'images') }}" alt="" />
+                    {% endfor %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- DEBUT : DMD -->
+
+<br><br><br><br><br>
+
+<!-- DEBUT : QUIZ -->
+<div id="quiz">
+    <form method="post" data-form>
+        <table width="1024px">
+            <tbody>
+                <tr>
+                    <td width="640px" class="center scanlines-wrap">
+                        <div class="scanlines no-display" data-images>
+                            <img src="data:image/png;base64,{{ game.image|imgbase64 }}" />
+                            <img src="data:image/png;base64,{{ game.image|imgbase64 }}" />
+                            <img src="data:image/png;base64,{{ game.image|imgbase64 }}" />
+                        </div>
+                    </td>
+                    <td width="24px"></td>
+                    <td width="360px" class="center">
+                        <ul>
+                        {% for game in answers %}
+                            <li class="answer">
+                                <button type="submit" name="answer" value="{{ game.id }}" data-answer>{{ game.name }}</button>
+                                <br><br>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<!-- FIN : QUIZZ -->
+{% endblock %}
+
+{% block js %}
+    {{ parent() }}
+
+    <script src="{{ asset('spatial_navigation.js', 'js') }}"></script>
+{% endblock %}

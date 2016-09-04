@@ -1,0 +1,30 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+<!-- DEBUT : GAME OVER -->
+<div id="gameover">
+    <img src="{{ asset('ui/game_over.png', 'images') }}">
+</div>
+<!-- FIN : GAME OVER -->
+
+<form method="post">
+    <p>
+        <label for="username">Pseudo :</label>
+        <input type="text" name="form[username]" id="username" value="{{ form.username.vars.value }}" data-select />
+
+        {% if form.username.vars.errors|length > 0 %}
+            <br>
+            Votre pseudo ne doit pas contenir plus de 10 caractères alpha-numériques.
+        {% endif %}
+    </p>
+
+    <p class="no-display"><button type="submit" name="submit" value="1">Enregistrer</button></p>
+</form>
+
+<!-- DEBUT : BOUTON REPLAY -->
+<div id="replay">
+    <a href="{{ url('home') }}" class="link">REJOUER UNE PARTIE ?</a><br><br>
+    <a href="http://www.screenzone.fr/forum/" class="link" target="_blank">VISITER LE FORUM SCREENZONE ^^</a>
+</div>
+<!-- FIN : BOUTON REPLAY -->
+{% endblock %}

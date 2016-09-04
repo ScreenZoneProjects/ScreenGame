@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <!-- METAS :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Communauté francophone dédiée à l'émulation et au retrogaming. Artwoks, Medias pour ScreenBox-FE ou HyperSpin et autres." />
+
+        <!-- TITLE :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+        <title>SCREENZONE&reg; INTERACTIVE - SNAPSGAME</title>
+
+        <!-- FAVICON :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+        <link rel="shortcut icon" href="{{ asset('favicon/favicon.ico', 'images') }}">
+        <link rel="icon" href="{{ asset('favicon/favicon.ico', 'images') }}" type="image/ico">
+        <link rel="icon" type="image/png" sizes="392x392"  href="{{ asset('favicon/favicon.png', 'images') }}">
+
+        <!-- CSS :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+        <link href="{{ asset('main.css', 'css') }}" rel="stylesheet" type="text/css" media="screen, projection" />
+
+        <!-- FONT-AWESOME ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        {% block pre_wrapper %}{% endblock %}
+
+        <div id="wrapper">
+            <div id="container">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+
+    {% block js %}
+        <script src="{{ asset('jquery/dist/jquery.min.js', 'vendor') }}"></script>
+        <script src="{{ asset('app.js', 'js') }}"></script>
+    {% endblock %}
+    </body>
+</html>
